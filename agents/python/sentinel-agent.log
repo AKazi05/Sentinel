@@ -1,0 +1,185 @@
+2025-06-15 19:03:26,844 [INFO] Sentinel Agent Started.
+2025-06-15 19:03:27,987 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.5, 'memoryUsage': 81.4, 'diskUsage': 43.0}
+2025-06-15 19:03:59,027 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.1, 'memoryUsage': 82.6, 'diskUsage': 43.0}
+2025-06-15 19:04:30,078 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.6, 'memoryUsage': 83.5, 'diskUsage': 43.0}
+2025-06-15 19:05:01,109 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.8, 'memoryUsage': 82.5, 'diskUsage': 43.0}
+2025-06-15 19:05:32,138 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.0, 'memoryUsage': 81.1, 'diskUsage': 43.0}
+2025-06-15 19:06:03,155 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.4, 'memoryUsage': 82.1, 'diskUsage': 43.0}
+2025-06-15 19:06:34,184 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 17.0, 'memoryUsage': 83.0, 'diskUsage': 43.0}
+2025-06-15 19:07:05,219 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.0, 'memoryUsage': 81.0, 'diskUsage': 43.0}
+2025-06-15 19:07:36,244 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.2, 'memoryUsage': 81.1, 'diskUsage': 43.0}
+2025-06-15 19:08:07,259 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 17.1, 'memoryUsage': 82.4, 'diskUsage': 43.0}
+2025-06-15 19:08:38,290 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 22.2, 'memoryUsage': 83.9, 'diskUsage': 43.0}
+2025-06-15 19:09:09,310 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.2, 'memoryUsage': 83.5, 'diskUsage': 43.0}
+2025-06-15 19:09:40,335 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.0, 'memoryUsage': 82.6, 'diskUsage': 43.0}
+2025-06-15 19:10:11,355 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.4, 'memoryUsage': 82.0, 'diskUsage': 43.0}
+2025-06-15 19:10:42,368 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.3, 'memoryUsage': 81.4, 'diskUsage': 43.0}
+2025-06-15 19:11:13,394 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.4, 'memoryUsage': 81.0, 'diskUsage': 43.0}
+2025-06-15 19:11:44,419 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.2, 'memoryUsage': 81.6, 'diskUsage': 43.0}
+2025-06-15 19:12:15,446 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.2, 'memoryUsage': 80.9, 'diskUsage': 43.0}
+2025-06-15 19:12:46,470 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.4, 'memoryUsage': 81.4, 'diskUsage': 43.0}
+2025-06-16 11:37:58,930 [INFO] Sentinel Agent Started.
+2025-06-16 11:38:00,092 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.4, 'memoryUsage': 79.5, 'diskUsage': 44.7}
+2025-06-16 11:38:31,126 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.7, 'memoryUsage': 78.9, 'diskUsage': 44.7}
+2025-06-16 11:39:02,156 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.0, 'memoryUsage': 80.4, 'diskUsage': 44.7}
+2025-06-16 11:39:33,185 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.7, 'memoryUsage': 78.7, 'diskUsage': 44.7}
+2025-06-16 11:40:04,216 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 0.6, 'memoryUsage': 78.7, 'diskUsage': 44.7}
+2025-06-16 11:40:35,162 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.4, 'memoryUsage': 81.1, 'diskUsage': 44.7}
+2025-06-16 11:41:06,189 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.0, 'memoryUsage': 79.7, 'diskUsage': 44.7}
+2025-06-16 11:41:37,212 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 0.7, 'memoryUsage': 79.3, 'diskUsage': 44.7}
+2025-06-16 11:42:08,232 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.5, 'memoryUsage': 79.9, 'diskUsage': 44.7}
+2025-06-16 11:42:39,250 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.1, 'memoryUsage': 79.4, 'diskUsage': 44.7}
+2025-06-16 11:43:10,270 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.9, 'memoryUsage': 79.2, 'diskUsage': 44.7}
+2025-06-16 11:43:41,305 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.5, 'memoryUsage': 79.4, 'diskUsage': 44.7}
+2025-06-16 11:44:12,326 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.6, 'memoryUsage': 78.6, 'diskUsage': 44.7}
+2025-06-16 11:44:43,353 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.6, 'memoryUsage': 79.0, 'diskUsage': 44.7}
+2025-06-16 11:45:14,375 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.0, 'memoryUsage': 80.5, 'diskUsage': 44.7}
+2025-06-16 11:45:45,402 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.9, 'memoryUsage': 79.7, 'diskUsage': 44.7}
+2025-06-16 11:46:16,424 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.2, 'memoryUsage': 79.7, 'diskUsage': 44.7}
+2025-06-16 11:46:47,452 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.2, 'memoryUsage': 79.7, 'diskUsage': 44.7}
+2025-06-16 11:47:18,470 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.0, 'memoryUsage': 80.0, 'diskUsage': 44.7}
+2025-06-16 11:47:49,485 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 15.3, 'memoryUsage': 81.8, 'diskUsage': 44.7}
+2025-06-16 11:48:20,506 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.0, 'memoryUsage': 80.2, 'diskUsage': 44.7}
+2025-06-16 11:48:51,531 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.2, 'memoryUsage': 80.3, 'diskUsage': 44.7}
+2025-06-16 11:49:22,555 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.9, 'memoryUsage': 80.7, 'diskUsage': 44.7}
+2025-06-16 11:49:53,584 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.9, 'memoryUsage': 81.5, 'diskUsage': 44.7}
+2025-06-16 11:50:24,615 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.3, 'memoryUsage': 80.8, 'diskUsage': 44.7}
+2025-06-16 11:50:55,638 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.8, 'memoryUsage': 80.5, 'diskUsage': 44.7}
+2025-06-16 11:51:26,681 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.0, 'memoryUsage': 80.9, 'diskUsage': 44.7}
+2025-06-16 11:51:57,717 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.5, 'memoryUsage': 80.1, 'diskUsage': 44.7}
+2025-06-16 11:52:28,737 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.3, 'memoryUsage': 79.6, 'diskUsage': 44.7}
+2025-06-16 11:52:59,758 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.1, 'memoryUsage': 80.3, 'diskUsage': 44.7}
+2025-06-16 11:53:30,784 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.5, 'memoryUsage': 82.5, 'diskUsage': 44.7}
+2025-06-16 11:54:01,813 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.4, 'memoryUsage': 79.7, 'diskUsage': 44.7}
+2025-06-16 11:54:32,838 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.8, 'memoryUsage': 80.2, 'diskUsage': 44.7}
+2025-06-16 11:55:03,881 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.1, 'memoryUsage': 81.6, 'diskUsage': 44.7}
+2025-06-16 11:55:34,886 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.6, 'memoryUsage': 82.7, 'diskUsage': 44.7}
+2025-06-16 11:56:05,881 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.4, 'memoryUsage': 82.4, 'diskUsage': 44.7}
+2025-06-16 11:56:36,895 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 18.4, 'memoryUsage': 82.1, 'diskUsage': 44.7}
+2025-06-16 11:57:07,923 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.3, 'memoryUsage': 81.6, 'diskUsage': 44.7}
+2025-06-16 11:57:38,953 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.1, 'memoryUsage': 82.0, 'diskUsage': 44.7}
+2025-06-16 11:58:09,984 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.1, 'memoryUsage': 82.4, 'diskUsage': 44.7}
+2025-06-16 11:58:41,008 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 20.1, 'memoryUsage': 83.2, 'diskUsage': 44.7}
+2025-06-16 11:59:12,045 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 21.0, 'memoryUsage': 81.0, 'diskUsage': 44.7}
+2025-06-16 11:59:43,076 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.9, 'memoryUsage': 81.6, 'diskUsage': 44.7}
+2025-06-16 12:00:14,096 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.5, 'memoryUsage': 72.5, 'diskUsage': 44.7}
+2025-06-16 12:00:45,118 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.1, 'memoryUsage': 72.1, 'diskUsage': 44.7}
+2025-06-16 12:01:16,142 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.4, 'memoryUsage': 72.7, 'diskUsage': 44.7}
+2025-06-16 12:01:47,176 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.1, 'memoryUsage': 71.7, 'diskUsage': 44.7}
+2025-06-16 12:02:18,201 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.9, 'memoryUsage': 72.4, 'diskUsage': 44.7}
+2025-06-16 12:02:49,225 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.9, 'memoryUsage': 72.4, 'diskUsage': 44.7}
+2025-06-16 12:03:20,250 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.1, 'memoryUsage': 72.6, 'diskUsage': 44.7}
+2025-06-16 12:50:08,332 [INFO] Sentinel Agent Started.
+2025-06-16 12:50:09,493 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.6, 'memoryUsage': 72.2, 'diskUsage': 44.8}
+2025-06-16 12:50:40,521 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.0, 'memoryUsage': 72.4, 'diskUsage': 44.8}
+2025-06-16 12:51:11,532 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.9, 'memoryUsage': 74.4, 'diskUsage': 44.8}
+2025-06-16 12:51:42,545 [ERROR] Send attempt 1 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1038c6ba0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 12:51:44,695 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 29.4, 'memoryUsage': 74.0, 'diskUsage': 44.8}
+2025-06-16 12:52:15,726 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 0.9, 'memoryUsage': 73.1, 'diskUsage': 44.8}
+2025-06-16 12:52:46,757 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 0.5, 'memoryUsage': 73.4, 'diskUsage': 44.8}
+2025-06-16 12:53:17,784 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.2, 'memoryUsage': 73.0, 'diskUsage': 44.8}
+2025-06-16 12:53:48,814 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 0.9, 'memoryUsage': 73.7, 'diskUsage': 44.8}
+2025-06-16 12:54:19,843 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.0, 'memoryUsage': 73.1, 'diskUsage': 44.8}
+2025-06-16 12:54:50,875 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.1, 'memoryUsage': 75.3, 'diskUsage': 44.8}
+2025-06-16 12:55:21,894 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.8, 'memoryUsage': 75.4, 'diskUsage': 44.8}
+2025-06-16 12:55:52,913 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.7, 'memoryUsage': 74.5, 'diskUsage': 44.8}
+2025-06-16 12:56:23,938 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.8, 'memoryUsage': 74.7, 'diskUsage': 44.8}
+2025-06-16 12:56:54,964 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.2, 'memoryUsage': 75.1, 'diskUsage': 44.8}
+2025-06-16 12:57:25,995 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.5, 'memoryUsage': 74.4, 'diskUsage': 44.8}
+2025-06-16 12:57:57,011 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.6, 'memoryUsage': 75.5, 'diskUsage': 44.8}
+2025-06-16 12:58:28,039 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.8, 'memoryUsage': 75.7, 'diskUsage': 44.8}
+2025-06-16 12:58:59,059 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.9, 'memoryUsage': 77.0, 'diskUsage': 44.8}
+2025-06-16 12:59:30,084 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.0, 'memoryUsage': 76.8, 'diskUsage': 44.8}
+2025-06-16 13:00:01,107 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.1, 'memoryUsage': 76.7, 'diskUsage': 44.8}
+2025-06-16 13:00:32,133 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.8, 'memoryUsage': 76.9, 'diskUsage': 44.8}
+2025-06-16 13:01:03,161 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.5, 'memoryUsage': 76.7, 'diskUsage': 44.8}
+2025-06-16 13:01:34,190 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.5, 'memoryUsage': 76.4, 'diskUsage': 44.8}
+2025-06-16 13:02:05,219 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.1, 'memoryUsage': 75.5, 'diskUsage': 44.8}
+2025-06-16 13:02:36,246 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.5, 'memoryUsage': 75.7, 'diskUsage': 44.8}
+2025-06-16 13:03:07,271 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.2, 'memoryUsage': 76.9, 'diskUsage': 44.8}
+2025-06-16 13:03:38,295 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.1, 'memoryUsage': 76.6, 'diskUsage': 44.8}
+2025-06-16 13:04:09,315 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.6, 'memoryUsage': 77.3, 'diskUsage': 44.8}
+2025-06-16 13:04:40,344 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.6, 'memoryUsage': 77.2, 'diskUsage': 44.8}
+2025-06-16 13:05:11,365 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 15.0, 'memoryUsage': 77.3, 'diskUsage': 44.8}
+2025-06-16 13:05:42,394 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 3.4, 'memoryUsage': 76.9, 'diskUsage': 44.8}
+2025-06-16 13:06:13,419 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.3, 'memoryUsage': 76.7, 'diskUsage': 44.8}
+2025-06-16 13:06:44,452 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.5, 'memoryUsage': 77.5, 'diskUsage': 44.8}
+2025-06-16 13:07:15,481 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.0, 'memoryUsage': 76.3, 'diskUsage': 44.8}
+2025-06-16 13:07:46,513 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.9, 'memoryUsage': 77.2, 'diskUsage': 44.8}
+2025-06-16 13:08:17,539 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.7, 'memoryUsage': 79.4, 'diskUsage': 44.8}
+2025-06-16 13:08:48,566 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.1, 'memoryUsage': 77.6, 'diskUsage': 44.8}
+2025-06-16 13:09:19,603 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.5, 'memoryUsage': 78.9, 'diskUsage': 44.8}
+2025-06-16 13:09:50,632 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.2, 'memoryUsage': 78.4, 'diskUsage': 44.8}
+2025-06-16 13:10:21,669 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.4, 'memoryUsage': 77.1, 'diskUsage': 44.8}
+2025-06-16 13:10:52,691 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 15.2, 'memoryUsage': 79.0, 'diskUsage': 44.8}
+2025-06-16 13:11:23,719 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.6, 'memoryUsage': 78.6, 'diskUsage': 44.8}
+2025-06-16 13:11:54,756 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.0, 'memoryUsage': 78.2, 'diskUsage': 44.8}
+2025-06-16 13:12:25,776 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.8, 'memoryUsage': 79.4, 'diskUsage': 44.8}
+2025-06-16 13:16:16,380 [INFO] Sentinel Agent Started.
+2025-06-16 13:16:17,406 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.7, 'memoryUsage': 77.3, 'diskUsage': 44.8}
+2025-06-16 13:16:48,439 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.5, 'memoryUsage': 76.8, 'diskUsage': 44.8}
+2025-06-16 13:17:19,471 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.1, 'memoryUsage': 78.0, 'diskUsage': 44.8}
+2025-06-16 13:17:50,491 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.8, 'memoryUsage': 78.8, 'diskUsage': 44.8}
+2025-06-16 13:18:21,514 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.7, 'memoryUsage': 79.4, 'diskUsage': 44.8}
+2025-06-16 13:18:52,538 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.4, 'memoryUsage': 78.0, 'diskUsage': 44.8}
+2025-06-16 13:19:23,563 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.6, 'memoryUsage': 78.7, 'diskUsage': 44.8}
+2025-06-16 13:19:54,592 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.3, 'memoryUsage': 79.1, 'diskUsage': 44.8}
+2025-06-16 13:20:25,606 [ERROR] Send attempt 1 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103d9c290>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:20:27,611 [ERROR] Send attempt 2 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103d9f4a0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:20:31,621 [ERROR] Send attempt 3 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103d9fd40>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:20:37,630 [INFO] Saved metrics to buffer.
+2025-06-16 13:21:07,641 [ERROR] Send attempt 1 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103dd0b30>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:09,651 [ERROR] Send attempt 2 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103dd1430>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:13,657 [ERROR] Send attempt 3 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103d9f980>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:19,659 [INFO] 1 buffered metrics retained.
+2025-06-16 13:21:20,663 [ERROR] Send attempt 1 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103d9eba0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:22,668 [ERROR] Send attempt 2 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103dd0b60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:26,677 [ERROR] Send attempt 3 failed: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103dd1580>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-06-16 13:21:32,679 [INFO] Saved metrics to buffer.
+2025-06-16 13:22:02,774 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.4, 'memoryUsage': 76.1, 'diskUsage': 44.8}
+2025-06-16 13:22:02,778 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 13.6, 'memoryUsage': 76.1, 'diskUsage': 44.8}
+2025-06-16 13:22:02,779 [INFO] Buffer flushed successfully.
+2025-06-16 13:22:03,800 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.6, 'memoryUsage': 78.3, 'diskUsage': 44.8}
+2025-06-16 13:22:34,831 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.1, 'memoryUsage': 78.5, 'diskUsage': 44.8}
+2025-06-16 13:23:05,856 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 15.8, 'memoryUsage': 78.1, 'diskUsage': 44.8}
+2025-06-16 13:23:36,891 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.0, 'memoryUsage': 78.8, 'diskUsage': 44.8}
+2025-06-16 13:44:18,928 [INFO] Sentinel Agent Started.
+2025-06-16 13:45:52,086 [INFO] Sentinel Agent Started.
+2025-06-16 13:48:39,056 [INFO] Sentinel Agent Started.
+2025-06-16 13:48:42,222 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.2, 'memoryUsage': 81.2, 'diskUsage': 44.8, 'bytesSentPerSec': 9216, 'bytesRecvPerSec': 9216, 'systemUptimeSeconds': 188666.07818603516, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 4096, 'latencyMs': 34.59310531616211}
+2025-06-16 13:49:15,319 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.4, 'memoryUsage': 80.8, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 188699.24588012695, 'diskReadBytesPerSec': 356352, 'diskWriteBytesPerSec': 0, 'latencyMs': 51.81407928466797}
+2025-06-16 13:49:48,390 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.3, 'memoryUsage': 82.4, 'diskUsage': 44.8, 'bytesSentPerSec': 6144, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 188732.3365330696, 'diskReadBytesPerSec': 126976, 'diskWriteBytesPerSec': 40960, 'latencyMs': 31.744003295898438}
+2025-06-16 13:50:21,479 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 13.9, 'memoryUsage': 82.2, 'diskUsage': 44.8, 'bytesSentPerSec': 17408, 'bytesRecvPerSec': 10240, 'systemUptimeSeconds': 188765.40336418152, 'diskReadBytesPerSec': 16384, 'diskWriteBytesPerSec': 147456, 'latencyMs': 60.34088134765625}
+2025-06-16 13:50:54,577 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 2.0, 'memoryUsage': 82.0, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 188798.50814199448, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 0, 'latencyMs': 44.888973236083984}
+2025-06-16 13:51:27,658 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 6.1, 'memoryUsage': 81.7, 'diskUsage': 44.8, 'bytesSentPerSec': 12288, 'bytesRecvPerSec': 10240, 'systemUptimeSeconds': 188831.59955716133, 'diskReadBytesPerSec': 77824, 'diskWriteBytesPerSec': 32768, 'latencyMs': 35.67194938659668}
+2025-06-16 13:52:00,748 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.8, 'memoryUsage': 82.3, 'diskUsage': 44.8, 'bytesSentPerSec': 2048, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 188864.68448781967, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 0, 'latencyMs': 39.17193412780762}
+2025-06-16 13:52:33,824 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.0, 'memoryUsage': 81.8, 'diskUsage': 44.8, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 188897.76523208618, 'diskReadBytesPerSec': 233472, 'diskWriteBytesPerSec': 0, 'latencyMs': 35.71820259094238}
+2025-06-16 13:53:06,890 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.4, 'memoryUsage': 81.0, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 188930.85057520866, 'diskReadBytesPerSec': 270336, 'diskWriteBytesPerSec': 385024, 'latencyMs': 19.21987533569336}
+2025-06-16 13:53:39,977 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.1, 'memoryUsage': 80.0, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 188963.90895199776, 'diskReadBytesPerSec': 245760, 'diskWriteBytesPerSec': 0, 'latencyMs': 39.016008377075195}
+2025-06-16 13:54:13,069 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.0, 'memoryUsage': 81.6, 'diskUsage': 44.8, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 0, 'systemUptimeSeconds': 188997.01581215858, 'diskReadBytesPerSec': 659456, 'diskWriteBytesPerSec': 32768, 'latencyMs': 30.423879623413086}
+2025-06-16 13:54:46,139 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 27.2, 'memoryUsage': 80.7, 'diskUsage': 44.8, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 0, 'systemUptimeSeconds': 189030.08668017387, 'diskReadBytesPerSec': 4956160, 'diskWriteBytesPerSec': 770048, 'latencyMs': 40.02499580383301}
+2025-06-16 13:55:19,219 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.1, 'memoryUsage': 81.0, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189063.1515829563, 'diskReadBytesPerSec': 299008, 'diskWriteBytesPerSec': 606208, 'latencyMs': 47.515869140625}
+2025-06-16 13:55:52,314 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.4, 'memoryUsage': 78.6, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189096.24308395386, 'diskReadBytesPerSec': 110592, 'diskWriteBytesPerSec': 1630208, 'latencyMs': 57.69228935241699}
+2025-06-16 13:56:25,393 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.5, 'memoryUsage': 78.2, 'diskUsage': 44.8, 'bytesSentPerSec': 7168, 'bytesRecvPerSec': 64512, 'systemUptimeSeconds': 189129.33535003662, 'diskReadBytesPerSec': 16384, 'diskWriteBytesPerSec': 0, 'latencyMs': 44.82388496398926}
+2025-06-16 13:56:58,463 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.2, 'memoryUsage': 78.4, 'diskUsage': 44.8, 'bytesSentPerSec': 2048, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 189162.41460204124, 'diskReadBytesPerSec': 237568, 'diskWriteBytesPerSec': 32768, 'latencyMs': 37.57476806640625}
+2025-06-16 13:57:31,545 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.8, 'memoryUsage': 76.9, 'diskUsage': 44.8, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189195.4818110466, 'diskReadBytesPerSec': 4096, 'diskWriteBytesPerSec': 0, 'latencyMs': 48.67911338806152}
+2025-06-16 13:58:04,642 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 13.4, 'memoryUsage': 79.0, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 189228.56243610382, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 0, 'latencyMs': 65.39392471313477}
+2025-06-16 13:58:37,707 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.6, 'memoryUsage': 78.9, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189261.6574459076, 'diskReadBytesPerSec': 278528, 'diskWriteBytesPerSec': 458752, 'latencyMs': 33.45608711242676}
+2025-06-16 13:59:10,781 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 1.6, 'memoryUsage': 76.8, 'diskUsage': 44.8, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 0, 'systemUptimeSeconds': 189294.73517012596, 'diskReadBytesPerSec': 290816, 'diskWriteBytesPerSec': 12288, 'latencyMs': 28.5189151763916}
+2025-06-16 13:59:43,858 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 7.0, 'memoryUsage': 77.6, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189327.80567598343, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 40960, 'latencyMs': 34.671783447265625}
+2025-06-16 14:00:16,950 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 16.7, 'memoryUsage': 78.9, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 4096, 'systemUptimeSeconds': 189360.8776140213, 'diskReadBytesPerSec': 491520, 'diskWriteBytesPerSec': 20480, 'latencyMs': 47.71304130554199}
+2025-06-16 14:00:50,032 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 13.5, 'memoryUsage': 77.1, 'diskUsage': 44.8, 'bytesSentPerSec': 3072, 'bytesRecvPerSec': 3072, 'systemUptimeSeconds': 189393.97570204735, 'diskReadBytesPerSec': 28672, 'diskWriteBytesPerSec': 0, 'latencyMs': 37.04023361206055}
+2025-06-16 14:01:23,147 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 9.0, 'memoryUsage': 81.2, 'diskUsage': 44.8, 'bytesSentPerSec': 3072, 'bytesRecvPerSec': 3072, 'systemUptimeSeconds': 189427.06092214584, 'diskReadBytesPerSec': 311296, 'diskWriteBytesPerSec': 3960832, 'latencyMs': 59.18693542480469}
+2025-06-16 14:01:56,229 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 15.9, 'memoryUsage': 81.5, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189460.1731519699, 'diskReadBytesPerSec': 49152, 'diskWriteBytesPerSec': 0, 'latencyMs': 41.85891151428223}
+2025-06-16 14:02:29,331 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 4.4, 'memoryUsage': 81.1, 'diskUsage': 44.8, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189493.25105905533, 'diskReadBytesPerSec': 73728, 'diskWriteBytesPerSec': 20480, 'latencyMs': 60.2569580078125}
+2025-06-16 14:03:02,445 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 47.6, 'memoryUsage': 82.9, 'diskUsage': 44.9, 'bytesSentPerSec': 2048, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189526.35367798805, 'diskReadBytesPerSec': 1445888, 'diskWriteBytesPerSec': 0, 'latencyMs': 50.264835357666016}
+2025-06-16 14:03:35,512 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 14.2, 'memoryUsage': 80.5, 'diskUsage': 45.0, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189559.46346998215, 'diskReadBytesPerSec': 86016, 'diskWriteBytesPerSec': 0, 'latencyMs': 32.96518325805664}
+2025-06-16 14:04:08,615 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 11.3, 'memoryUsage': 80.5, 'diskUsage': 45.0, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189592.533493042, 'diskReadBytesPerSec': 200704, 'diskWriteBytesPerSec': 32768, 'latencyMs': 34.45887565612793}
+2025-06-16 14:04:41,745 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.0, 'memoryUsage': 81.4, 'diskUsage': 45.0, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 189625.63734197617, 'diskReadBytesPerSec': 49152, 'diskWriteBytesPerSec': 512000, 'latencyMs': 72.9978084564209}
+2025-06-16 14:05:14,816 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.0, 'memoryUsage': 80.8, 'diskUsage': 45.0, 'bytesSentPerSec': 3072, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 189658.76148200035, 'diskReadBytesPerSec': 602112, 'diskWriteBytesPerSec': 57344, 'latencyMs': 31.58712387084961}
+2025-06-16 14:05:47,922 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 10.8, 'memoryUsage': 81.2, 'diskUsage': 45.0, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 0, 'systemUptimeSeconds': 189691.8374660015, 'diskReadBytesPerSec': 98304, 'diskWriteBytesPerSec': 512000, 'latencyMs': 58.682918548583984}
+2025-06-16 14:06:21,026 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 12.6, 'memoryUsage': 80.8, 'diskUsage': 45.0, 'bytesSentPerSec': 0, 'bytesRecvPerSec': 0, 'systemUptimeSeconds': 189724.94717907906, 'diskReadBytesPerSec': 16384, 'diskWriteBytesPerSec': 32768, 'latencyMs': 51.81622505187988}
+2025-06-16 14:06:54,114 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 21.4, 'memoryUsage': 83.3, 'diskUsage': 45.0, 'bytesSentPerSec': 3072, 'bytesRecvPerSec': 2048, 'systemUptimeSeconds': 189758.05211496353, 'diskReadBytesPerSec': 122880, 'diskWriteBytesPerSec': 40960, 'latencyMs': 41.58616065979004}
+2025-06-16 14:07:27,224 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 5.6, 'memoryUsage': 80.8, 'diskUsage': 45.0, 'bytesSentPerSec': 1024, 'bytesRecvPerSec': 1024, 'systemUptimeSeconds': 189791.1478099823, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 8192, 'latencyMs': 58.06589126586914}
+2025-06-16 14:08:00,282 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 13.1, 'memoryUsage': 81.2, 'diskUsage': 45.0, 'bytesSentPerSec': 5120, 'bytesRecvPerSec': 7168, 'systemUptimeSeconds': 189824.24322199821, 'diskReadBytesPerSec': 0, 'diskWriteBytesPerSec': 12288, 'latencyMs': 29.360055923461914}
+2025-06-16 14:08:33,368 [INFO] Metrics sent: {'deviceId': 'Mahjabeens-Air.lan', 'cpuUsage': 8.2, 'memoryUsage': 81.6, 'diskUsage': 45.0, 'bytesSentPerSec': 9216, 'bytesRecvPerSec': 8192, 'systemUptimeSeconds': 189857.30067777634, 'diskReadBytesPerSec': 122880, 'diskWriteBytesPerSec': 40960, 'latencyMs': 38.1777286529541}

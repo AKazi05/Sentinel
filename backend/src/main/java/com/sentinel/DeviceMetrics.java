@@ -14,6 +14,17 @@ public class DeviceMetrics {
     private double cpuUsage;
     private double memoryUsage;
     private double diskUsage;
+
+    private Long bytesSentPerSec;
+    private Long bytesRecvPerSec;
+
+    private Long diskReadBytesPerSec;
+    private Long diskWriteBytesPerSec;
+
+    private Double latencyMs; // nullable
+
+    private Double systemUptimeSeconds;
+
     private LocalDateTime timestamp;
 
     // Getters
@@ -35,6 +46,30 @@ public class DeviceMetrics {
 
     public double getDiskUsage() {
         return diskUsage;
+    }
+
+    public Long getBytesSentPerSec() {
+        return bytesSentPerSec;
+    }
+
+    public Long getBytesRecvPerSec() {
+        return bytesRecvPerSec;
+    }
+
+    public Long getDiskReadBytesPerSec() {
+        return diskReadBytesPerSec;
+    }
+
+    public Long getDiskWriteBytesPerSec() {
+        return diskWriteBytesPerSec;
+    }
+
+    public Double getLatencyMs() {
+        return latencyMs;
+    }
+
+    public Double getSystemUptimeSeconds() {
+        return systemUptimeSeconds;
     }
 
     public LocalDateTime getTimestamp() {
@@ -60,6 +95,30 @@ public class DeviceMetrics {
 
     public void setDiskUsage(double diskUsage) {
         this.diskUsage = diskUsage;
+    }
+
+    public void setBytesSentPerSec(Long bytesSentPerSec) {
+        this.bytesSentPerSec = bytesSentPerSec;
+    }
+
+    public void setBytesRecvPerSec(Long bytesRecvPerSec) {
+        this.bytesRecvPerSec = bytesRecvPerSec;
+    }
+
+    public void setDiskReadBytesPerSec(Long diskReadBytesPerSec) {
+        this.diskReadBytesPerSec = diskReadBytesPerSec;
+    }
+
+    public void setDiskWriteBytesPerSec(Long diskWriteBytesPerSec) {
+        this.diskWriteBytesPerSec = diskWriteBytesPerSec;
+    }
+
+    public void setLatencyMs(Double latencyMs) {
+        this.latencyMs = latencyMs;
+    }
+
+    public void setSystemUptimeSeconds(Double systemUptimeSeconds) {
+        this.systemUptimeSeconds = systemUptimeSeconds;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
