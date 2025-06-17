@@ -1,12 +1,24 @@
 package com.sentinel;
 
-import com.sentinel.DeviceMetrics;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public interface DeviceMetricsRepository extends JpaRepository<DeviceMetrics, Long> {
-    List<DeviceMetrics> findByDeviceIdOrderByTimestampDesc(String deviceId);
+
+    Page<DeviceMetrics> findByDeviceIdOrderByTimestampDesc(String deviceId, Pageable pageable);
+
+    Page<DeviceMetrics> findByDeviceIdAndTimestampBetween(String deviceId, LocalDateTime from, LocalDateTime to, Pageable pageable);
+
+    Page<DeviceMetrics> findByDeviceIdAndTimestampAfter(String deviceId, LocalDateTime from, Pageable pageable);
+
+    Page<DeviceMetrics> findByDeviceIdAndTimestampBefore(String deviceId, LocalDateTime to, Pageable pageable);
+
+    DeviceMetrics findTopByDeviceIdOrderByTimestampDesc(String deviceId);
 
     @Query("SELECT DISTINCT dm.deviceId FROM DeviceMetrics dm")
     List<String> findDistinctDeviceIds();

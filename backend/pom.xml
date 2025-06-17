@@ -72,10 +72,22 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Websocket -->
+
   <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-websocket</artifactId>
   </dependency>
+
+
+    <!-- PostgreSQL -->
+
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.5.4</version> <!-- or latest -->
+</dependency>
+
 
 
   </dependencies>
