@@ -1,0 +1,14 @@
+# Node dependencies
+node_modules/
+
+# VSCode settings
+.vscode/
+
+# Maven build folder
+target/
+
+# Environment variables
+.env
+
+# OS files (optional)
+.DS_Store
