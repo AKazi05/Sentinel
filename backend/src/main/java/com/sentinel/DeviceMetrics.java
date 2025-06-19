@@ -9,7 +9,7 @@ public class DeviceMetrics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String deviceId;
     private double cpuUsage;
     private double memoryUsage;

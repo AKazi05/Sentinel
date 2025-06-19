@@ -9,6 +9,11 @@ function App() {
   const [deviceId, setDeviceId] = useState('');
   const [metrics, setMetrics] = useState([]);
   const [deviceStatuses, setDeviceStatuses] = useState([]);
+  const [alerts, setAlerts] = useState([]);
+
+  const CPU_THRESHOLD = 90;
+  const MEMORY_THRESHOLD = 90;
+  const DISK_THRESHOLD = 90;
 
   // Load device list
   useEffect(() => {
@@ -33,31 +38,48 @@ function App() {
       .catch(console.error);
   }, [deviceId]);
 
-useEffect(() => {
-  if (!deviceId) return;
+  // WebSocket connection for real-time metrics
+  useEffect(() => {
+    if (!deviceId) return;
 
-  const socket = new SockJS('http://localhost:8080/ws');
-  const client = new Client({
-    webSocketFactory: () => socket,
-    debug: (str) => console.log(str),
-    reconnectDelay: 5000,
-  });
-
-  client.onConnect = () => {
-    console.log(`✅ Connected to WS for device ${deviceId}`);
-    client.subscribe(`/topic/metrics/${deviceId}`, (message) => {
-      console.log('📡 WS msg received:', message.body);
-      const newMetric = JSON.parse(message.body);
-      setMetrics(prev => [newMetric, ...prev]);
+    const socket = new SockJS('http://localhost:8080/ws');
+    const client = new Client({
+      webSocketFactory: () => socket,
+      debug: (str) => console.log(str),
+      reconnectDelay: 5000,
     });
-  };
 
-  client.activate();
-  return () => {
-    client.deactivate();
-    console.log('🔌 Disconnected from WS');
-  };
-}, [deviceId]);
+    client.onConnect = () => {
+      console.log(`✅ Connected to WS for device ${deviceId}`);
+      client.subscribe(`/topic/metrics/${deviceId}`, (message) => {
+        console.log('📡 WS msg received:', message.body);
+        const newMetric = JSON.parse(message.body);
+        setMetrics(prev => [newMetric, ...prev]);
+
+        // Check for alerts
+        const newAlerts = [];
+        if (newMetric.cpuUsage > CPU_THRESHOLD) {
+          newAlerts.push(`⚠️ High CPU usage on ${deviceId}: ${newMetric.cpuUsage.toFixed(1)}%`);
+        }
+        if (newMetric.memoryUsage > MEMORY_THRESHOLD) {
+          newAlerts.push(`⚠️ High Memory usage on ${deviceId}: ${newMetric.memoryUsage.toFixed(1)}%`);
+        }
+        if (newMetric.diskUsage > DISK_THRESHOLD) {
+          newAlerts.push(`⚠️ High Disk usage on ${deviceId}: ${newMetric.diskUsage.toFixed(1)}%`);
+        }
+
+        if (newAlerts.length > 0) {
+          setAlerts(prev => [...newAlerts, ...prev].slice(0, 10)); // Keep last 10 alerts
+        }
+      });
+    };
+
+    client.activate();
+    return () => {
+      client.deactivate();
+      console.log('🔌 Disconnected from WS');
+    };
+  }, [deviceId]);
 
   // Poll device statuses every 5s
   useEffect(() => {
@@ -79,6 +101,24 @@ useEffect(() => {
     <div className="app-container">
       <h1>Sentinel Monitoring Dashboard</h1>
 
+      {/* Alerts */}
+      <div className="alerts-section">
+        <h2>Alerts</h2>
+        {alerts.length === 0 ? (
+          <p>No alerts.</p>
+        ) : (
+          <ul className="alert-list">
+            {alerts.map((alert, idx) => (
+              <li key={idx} className="alert-item">{alert}</li>
+            ))}
+          </ul>
+        )}
+        {alerts.length > 0 && (
+          <button onClick={() => setAlerts([])} className="clear-alerts-btn">Clear Alerts</button>
+        )}
+      </div>
+
+      {/* Device Status Table */}
       <div className="device-status-list">
         <h2>Device Health</h2>
         <table className="device-status-table">
@@ -107,6 +147,7 @@ useEffect(() => {
         </table>
       </div>
 
+      {/* Device Selector */}
       <label>
         Select Device:{" "}
         <select
@@ -122,6 +163,7 @@ useEffect(() => {
         </select>
       </label>
 
+      {/* Metrics Table */}
       <table className="metrics-table">
         <thead>
           <tr>
@@ -141,7 +183,7 @@ useEffect(() => {
           {metrics.length > 0 ? metrics.map((m, i) => (
             <tr key={i} style={{
               backgroundColor:
-                (m.cpuUsage > 90 || m.memoryUsage > 90 || m.diskUsage > 90)
+                (m.cpuUsage > CPU_THRESHOLD || m.memoryUsage > MEMORY_THRESHOLD || m.diskUsage > DISK_THRESHOLD)
                   ? "#ffebeb"
                   : "white"
             }}>
