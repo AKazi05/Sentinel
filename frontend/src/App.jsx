@@ -4,6 +4,8 @@ import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import './App.css';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
+
 function App() {
   const [devices, setDevices] = useState([]);
   const [deviceId, setDeviceId] = useState('');
@@ -17,7 +19,7 @@ function App() {
 
   // Load device list
   useEffect(() => {
-    axios.get('http://localhost:8080/api/devices')
+    axios.get(`${BACKEND_URL}/api/devices`)
       .then(res => {
         const devicesArray = Array.isArray(res.data) ? res.data : res.data.content || [];
         setDevices(devicesArray);
@@ -30,7 +32,7 @@ function App() {
   useEffect(() => {
     if (!deviceId) return;
 
-    axios.get(`http://localhost:8080/api/metrics/${deviceId}`)
+    axios.get(`${BACKEND_URL}/api/metrics/${deviceId}`)
       .then(res => {
         const metricsArray = Array.isArray(res.data.content) ? res.data.content : [];
         setMetrics(metricsArray);
@@ -42,7 +44,7 @@ function App() {
   useEffect(() => {
     if (!deviceId) return;
 
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS(`${BACKEND_URL}/ws`);
     const client = new Client({
       webSocketFactory: () => socket,
       debug: (str) => console.log(str),
@@ -84,7 +86,7 @@ function App() {
   // Poll device statuses every 5s
   useEffect(() => {
     const fetchStatuses = () => {
-      axios.get('http://localhost:8080/api/metrics/status')
+      axios.get(`${BACKEND_URL}/api/metrics/status`)
         .then(res => {
           const statuses = Array.isArray(res.data) ? res.data : [];
           setDeviceStatuses(Array.isArray(statuses) ? statuses : []);
