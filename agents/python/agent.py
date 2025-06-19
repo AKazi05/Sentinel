@@ -7,7 +7,7 @@ import json
 import os
 
 # ====== CONFIGURATION ======
-SERVER_URL = "http://localhost:8080/api/metrics"
+SERVER_URL = os.getenv("SENTINEL_SERVER_URL", "http://localhost:8080/api/metrics")
 DEVICE_ID = socket.gethostname()
 INTERVAL_SECONDS = 30
 MAX_RETRIES = 3
