@@ -5,10 +5,11 @@ import time
 import logging
 import json
 import os
+import uuid
 
 # ====== CONFIGURATION ======
 SERVER_URL = os.getenv("SENTINEL_SERVER_URL", "http://localhost:8080/api/metrics")
-DEVICE_ID = socket.gethostname()
+DEVICE_ID_FILE = "device_data/device_id.json"
 INTERVAL_SECONDS = 30
 MAX_RETRIES = 3
 BUFFER_FILE = "unsent_metrics.json"
@@ -20,6 +21,32 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
+
+def get_or_create_device_id():
+    """Load or generate a persistent device ID."""
+    if os.path.exists(DEVICE_ID_FILE):
+        try:
+            with open(DEVICE_ID_FILE, 'r') as f:
+                return json.load(f)['device_id']
+        except Exception as e:
+            logging.warning(f"Could not read device ID file: {e}")
+
+    # Generate new device ID
+    hostname = socket.gethostname()
+    mac = uuid.getnode()
+    device_id = f"{hostname}-{mac}"
+
+    try:
+        os.makedirs(os.path.dirname(DEVICE_ID_FILE), exist_ok=True)  # <-- Ensure directory exists
+        with open(DEVICE_ID_FILE, 'w') as f:
+            json.dump({'device_id': device_id}, f)
+        logging.info(f"Generated new device ID: {device_id}")
+    except Exception as e:
+        logging.error(f"Failed to write device ID file: {e}")
+
+    return device_id
+
+DEVICE_ID = os.getenv("DEVICE_ID", get_or_create_device_id())
 
 def get_network_traffic():
     net1 = psutil.net_io_counters()
@@ -49,7 +76,7 @@ def collect_metrics():
     bytes_sent, bytes_recv = get_network_traffic()
     disk_read, disk_write = get_disk_io()
     return {
-        "deviceId": socket.gethostname(),
+        "deviceId": DEVICE_ID,
         "cpuUsage": psutil.cpu_percent(interval=1),
         "memoryUsage": psutil.virtual_memory().percent,
         "diskUsage": psutil.disk_usage('/').percent,
@@ -62,7 +89,6 @@ def collect_metrics():
     }
 
 def send_metrics(metrics):
-    """Send metrics to the server with retries."""
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             response = requests.post(SERVER_URL, json=metrics, timeout=5)
@@ -73,11 +99,10 @@ def send_metrics(metrics):
                 logging.warning(f"Unexpected status code {response.status_code}")
         except Exception as e:
             logging.error(f"Send attempt {attempt} failed: {e}")
-            time.sleep(2 * attempt)  # Exponential backoff
+            time.sleep(2 * attempt)
     return False
 
 def save_to_buffer(metrics):
-    """Save unsent metrics locally to a buffer file."""
     buffer = []
     if os.path.exists(BUFFER_FILE):
         try:
@@ -92,7 +117,6 @@ def save_to_buffer(metrics):
     logging.info("Saved metrics to buffer.")
 
 def flush_buffer():
-    """Attempt to resend buffered metrics."""
     if not os.path.exists(BUFFER_FILE):
         return
 
