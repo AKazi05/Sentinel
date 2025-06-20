@@ -4,8 +4,11 @@ import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import './App.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+if (!BACKEND_URL) {
+  throw new Error('Missing REACT_APP_BACKEND_URL environment variable');
+}
 function App() {
   const [devices, setDevices] = useState([]);
   const [deviceId, setDeviceId] = useState('');

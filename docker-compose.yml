@@ -3,6 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15
+    container_name: sentinel-db
     restart: always
     environment:
       POSTGRES_DB: sentinel
@@ -12,10 +13,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
       context: ./backend
+    container_name: sentinel-backend
     depends_on:
       - postgres
     environment:
@@ -24,10 +31,18 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   frontend:
     build:
       context: ./frontend
+      args:
+        REACT_APP_BACKEND_URL: http://backend:8080
+    container_name: sentinel-frontend
     depends_on:
       - backend
     ports:
@@ -36,6 +51,7 @@ services:
   agent:
     build:
       context: ./agents/python
+    container_name: sentinel-agent
     depends_on:
       - backend
     environment:

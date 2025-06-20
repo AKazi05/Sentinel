@@ -1,20 +1,23 @@
+# Build stage
 FROM node:18-alpine as build
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json first
+# Copy package files and install dependencies
 COPY package.json package-lock.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy rest of the source code
+# Copy app source
 COPY . .
 
-# Build production assets
+# Inject env var
+ARG REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
+# Build React app
 RUN npm run build
 
-# Use a smaller web server image to serve the built files
+# Serve stage
 FROM nginx:alpine
 
 COPY --from=build /app/build /usr/share/nginx/html
