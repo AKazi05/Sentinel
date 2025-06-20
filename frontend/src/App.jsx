@@ -108,7 +108,7 @@ function App() {
 
       {/* Alerts */}
       <div className="alerts-section">
-        <h2>Alerts Updated</h2>
+        <h2>Alerts</h2>
         {alerts.length === 0 ? (
           <p>No alerts.</p>
         ) : (
