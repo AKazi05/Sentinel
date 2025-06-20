@@ -41,7 +41,7 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_BACKEND_URL: http://backend:8080
+        REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL}
     container_name: sentinel-frontend
     depends_on:
       - backend
@@ -55,7 +55,7 @@ services:
     depends_on:
       - backend
     environment:
-      SENTINEL_SERVER_URL: http://backend:8080/api/metrics
+      SENTINEL_SERVER_URL: ${SENTINEL_SERVER_URL}
 
 volumes:
   postgres_data:
