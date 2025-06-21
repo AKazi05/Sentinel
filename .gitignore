@@ -9,3 +9,8 @@ target/
 
 # OS files (optional)
 .DS_Store
+
+# Environment variables files
+.env
+frontend/.env/local
+frontend/.env/production
