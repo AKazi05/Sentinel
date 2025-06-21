@@ -25,9 +25,9 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://sentineldb.cahmecuqyyjw.us-east-1.rds.amazonaws.com:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Spider22
     ports:
       - "8080:8080"
     healthcheck:
