@@ -9,6 +9,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 if (!BACKEND_URL) {
   throw new Error('Missing REACT_APP_BACKEND_URL environment variable');
 }
+
 function App() {
   const [devices, setDevices] = useState([]);
   const [deviceId, setDeviceId] = useState('');
@@ -102,6 +103,26 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // Delete device handler
+  const handleDeleteDevice = async () => {
+    if (!deviceId) return;
+
+    const confirmDelete = window.confirm(`Are you sure you want to delete device "${deviceId}"?`);
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`${BACKEND_URL}/api/devices/${deviceId}`);
+      alert(`Device "${deviceId}" deleted successfully.`);
+      const updatedDevices = devices.filter(d => d !== deviceId);
+      setDevices(updatedDevices);
+      setDeviceId(updatedDevices.length > 0 ? updatedDevices[0] : '');
+      setMetrics([]);
+    } catch (err) {
+      console.error('Failed to delete device:', err);
+      alert('Failed to delete device.');
+    }
+  };
+
   return (
     <div className="app-container">
       <h1>Sentinel Monitoring Dashboard</h1>
@@ -152,21 +173,38 @@ function App() {
         </table>
       </div>
 
-      {/* Device Selector */}
-      <label>
-        Select Device:{" "}
-        <select
-          value={deviceId}
-          onChange={e => setDeviceId(e.target.value)}
-          disabled={devices.length === 0}
-        >
-          {devices.length > 0 ? devices.map(d => (
-            <option key={d} value={d}>{d}</option>
-          )) : (
-            <option value="">No devices available</option>
-          )}
-        </select>
-      </label>
+      {/* Device Selector and Delete Button */}
+      <div style={{ marginTop: '1rem' }}>
+        <label>
+          Select Device:{" "}
+          <select
+            value={deviceId}
+            onChange={e => setDeviceId(e.target.value)}
+            disabled={devices.length === 0}
+          >
+            {devices.length > 0 ? devices.map(d => (
+              <option key={d} value={d}>{d}</option>
+            )) : (
+              <option value="">No devices available</option>
+            )}
+          </select>
+        </label>
+        {deviceId && (
+          <button
+            onClick={handleDeleteDevice}
+            style={{
+              marginLeft: '1rem',
+              color: 'white',
+              backgroundColor: 'red',
+              padding: '0.3rem 0.7rem',
+              borderRadius: '4px',
+              border: 'none'
+            }}
+          >
+            🗑 Remove Device
+          </button>
+        )}
+      </div>
 
       {/* Metrics Table */}
       <table className="metrics-table">

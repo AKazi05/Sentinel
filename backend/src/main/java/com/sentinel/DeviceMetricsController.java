@@ -3,6 +3,7 @@ package com.sentinel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +29,10 @@ public class DeviceMetricsController {
         metrics.setTimestamp(LocalDateTime.now());
         DeviceMetrics saved = repo.save(metrics);
 
-        // Push new metrics to subscribers of this deviceId
         messagingTemplate.convertAndSend("/topic/metrics/" + saved.getDeviceId(), saved);
         return saved;
     }
-    // Pagination + filtering
+
     @GetMapping("/metrics/{deviceId}")
     public Page<DeviceMetrics> getMetrics(
             @PathVariable String deviceId,
@@ -42,7 +42,6 @@ public class DeviceMetricsController {
             @RequestParam(required = false) String toTimestamp) {
 
         Pageable pageable = PageRequest.of(page, size);
-
         LocalDateTime from = (fromTimestamp != null) ? LocalDateTime.parse(fromTimestamp) : null;
         LocalDateTime to = (toTimestamp != null) ? LocalDateTime.parse(toTimestamp) : null;
 
@@ -57,37 +56,29 @@ public class DeviceMetricsController {
         }
     }
 
-
-    //return statuses
-@GetMapping("/metrics/status")
-public List<DeviceStatus> getDeviceStatuses() {
-    List<DeviceStatus> statuses = new ArrayList<>();
-
-    List<String> deviceIds = repo.findDistinctDeviceIds();
-    for (String deviceId : deviceIds) {
-        DeviceMetrics latest = repo.findTopByDeviceIdOrderByTimestampDesc(deviceId);
-        if (latest != null) {
-            // Example logic for online: last heartbeat < 10 sec ago
-            boolean online = latest.getTimestamp().isAfter(LocalDateTime.now().minusSeconds(120));
-            statuses.add(new DeviceStatus(deviceId, latest.getTimestamp(), online));
+    @GetMapping("/metrics/status")
+    public List<DeviceStatus> getDeviceStatuses() {
+        List<DeviceStatus> statuses = new ArrayList<>();
+        List<String> deviceIds = repo.findDistinctDeviceIds();
+        for (String deviceId : deviceIds) {
+            DeviceMetrics latest = repo.findTopByDeviceIdOrderByTimestampDesc(deviceId);
+            if (latest != null) {
+                boolean online = latest.getTimestamp().isAfter(LocalDateTime.now().minusSeconds(120));
+                statuses.add(new DeviceStatus(deviceId, latest.getTimestamp(), online));
+            }
         }
+        return statuses;
     }
 
-    return statuses;
-}
-
-    // List all distinct devices reporting in
     @GetMapping("/devices")
     public List<String> getAllDeviceIds() {
         return repo.findDistinctDeviceIds();
     }
 
-    // Latest snapshot per device
     @GetMapping("/metrics/latest")
     public List<DeviceMetrics> getLatestMetrics() {
         List<String> deviceIds = repo.findDistinctDeviceIds();
         List<DeviceMetrics> latestMetrics = new ArrayList<>();
-
         for (String deviceId : deviceIds) {
             DeviceMetrics latest = repo.findTopByDeviceIdOrderByTimestampDesc(deviceId);
             if (latest != null) {
@@ -97,13 +88,10 @@ public List<DeviceStatus> getDeviceStatuses() {
         return latestMetrics;
     }
 
+@DeleteMapping("/devices/{deviceId}")
+public ResponseEntity<Void> deleteDevice(@PathVariable String deviceId) {
+    repo.deleteByDeviceId(deviceId);
+    return ResponseEntity.noContent().build();
 }
 
-
-
-
-
-
-
-
-
+}
