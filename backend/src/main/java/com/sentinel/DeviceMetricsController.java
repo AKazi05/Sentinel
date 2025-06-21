@@ -24,12 +24,12 @@ public class DeviceMetricsController {
 
     @PostMapping("/metrics")
     public DeviceMetrics submitMetrics(@RequestBody DeviceMetrics metrics) {
+        System.out.println("✅ Received metrics from: " + metrics.getDeviceId());
         metrics.setTimestamp(LocalDateTime.now());
         DeviceMetrics saved = repo.save(metrics);
 
         // Push new metrics to subscribers of this deviceId
         messagingTemplate.convertAndSend("/topic/metrics/" + saved.getDeviceId(), saved);
-
         return saved;
     }
     // Pagination + filtering
