@@ -47,19 +47,5 @@ services:
     ports:
       - "3000:80"
 
-  agent:
-    build:
-      context: ./agents/python
-    container_name: sentinel-agent
-    depends_on:
-      - backend
-    environment:
-      SENTINEL_SERVER_URL: http://backend:8080/api/metrics
-      DEVICE_ID_FILE: /app/device_data/device_id.json
-    volumes:
-      - agent_device_data:/app/device_data
-    restart: always
-
 volumes:
   postgres_data:
-  agent_device_data:
