@@ -21,20 +21,46 @@ function App() {
   const MEMORY_THRESHOLD = 90;
   const DISK_THRESHOLD = 90;
 
-  // Load device list
+  // Sync devices list with deviceStatuses every 5 seconds
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/devices`)
-      .then(res => {
-        const devicesArray = Array.isArray(res.data) ? res.data : res.data.content || [];
-        setDevices(devicesArray);
-        if (devicesArray.length > 0) setDeviceId(devicesArray[0]);
-      })
-      .catch(console.error);
-  }, []);
+    const fetchStatuses = () => {
+      axios.get(`${BACKEND_URL}/api/metrics/status`)
+        .then(res => {
+          const statuses = Array.isArray(res.data) ? res.data : [];
+          setDeviceStatuses(statuses);
+
+          // Extract device IDs from statuses
+          const statusDeviceIds = statuses.map(d => d.deviceId);
+
+          setDevices(prevDevices => {
+            // Merge old and new devices uniquely
+            const mergedDevices = Array.from(new Set([...prevDevices, ...statusDeviceIds]));
+
+            // If current deviceId is missing, select first available or empty
+            if (!mergedDevices.includes(deviceId)) {
+              if (mergedDevices.length > 0) {
+                setDeviceId(mergedDevices[0]);
+              } else {
+                setDeviceId('');
+              }
+            }
+            return mergedDevices;
+          });
+        })
+        .catch(console.error);
+    };
+
+    fetchStatuses();
+    const interval = setInterval(fetchStatuses, 5000);
+    return () => clearInterval(interval);
+  }, [deviceId]);
 
   // Load initial metrics on deviceId change
   useEffect(() => {
-    if (!deviceId) return;
+    if (!deviceId) {
+      setMetrics([]);
+      return;
+    }
 
     axios.get(`${BACKEND_URL}/api/metrics/${deviceId}`)
       .then(res => {
@@ -87,22 +113,6 @@ function App() {
     };
   }, [deviceId]);
 
-  // Poll device statuses every 5s
-  useEffect(() => {
-    const fetchStatuses = () => {
-      axios.get(`${BACKEND_URL}/api/metrics/status`)
-        .then(res => {
-          const statuses = Array.isArray(res.data) ? res.data : [];
-          setDeviceStatuses(Array.isArray(statuses) ? statuses : []);
-        })
-        .catch(console.error);
-    };
-
-    fetchStatuses();
-    const interval = setInterval(fetchStatuses, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Delete device handler
   const handleDeleteDevice = async () => {
     if (!deviceId) return;
@@ -113,9 +123,15 @@ function App() {
     try {
       await axios.delete(`${BACKEND_URL}/api/devices/${deviceId}`);
       alert(`Device "${deviceId}" deleted successfully.`);
-      const updatedDevices = devices.filter(d => d !== deviceId);
-      setDevices(updatedDevices);
-      setDeviceId(updatedDevices.length > 0 ? updatedDevices[0] : '');
+      setDevices(prev => {
+        const updatedDevices = prev.filter(d => d !== deviceId);
+        if (updatedDevices.length > 0) {
+          setDeviceId(updatedDevices[0]);
+        } else {
+          setDeviceId('');
+        }
+        return updatedDevices;
+      });
       setMetrics([]);
     } catch (err) {
       console.error('Failed to delete device:', err);
