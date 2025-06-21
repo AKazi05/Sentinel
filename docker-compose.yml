@@ -6,7 +6,6 @@ services:
     container_name: sentinel-db
     restart: always
     environment:
-      POSTGRES_DB: sentineldb
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
