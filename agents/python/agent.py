@@ -8,7 +8,7 @@ import os
 import uuid
 
 # ====== CONFIGURATION ======
-SERVER_URL = os.getenv("SENTINEL_SERVER_URL", "http://localhost:8080/api/metrics")
+SERVER_URL = os.getenv("SENTINEL_SERVER_URL", "http://192.168.12.115:8080/api/metrics")
 DEVICE_ID_FILE = "device_data/device_id.json"
 INTERVAL_SECONDS = 30
 MAX_RETRIES = 3
