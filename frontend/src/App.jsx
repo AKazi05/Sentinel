@@ -141,7 +141,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Sentinel Monitoring Dashboard</h1>
+      <h1 className="main-title">Sentinel Monitoring Dashboard</h1>
 
       {/* Alerts */}
       <div className="alerts-section">
@@ -160,110 +160,101 @@ function App() {
         )}
       </div>
 
-      {/* Device Status Table */}
-      <div className="device-status-list">
-        <h2>Device Health</h2>
-        <table className="device-status-table">
+      <div className="status-and-selector">
+        <div className="device-health">
+          <h2>Device Health</h2>
+          <table className="device-status-table">
+            <thead>
+              <tr>
+                <th>Device ID</th>
+                <th>Last Heartbeat</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deviceStatuses.length > 0 ? deviceStatuses.map((d, i) => (
+                <tr key={i}>
+                  <td>{d.deviceId}</td>
+                  <td>{d.lastHeartbeat ? new Date(d.lastHeartbeat).toLocaleString() : "N/A"}</td>
+                  <td className={d.online ? 'status-online' : 'status-offline'}>
+                    {d.online ? 'Online' : 'Offline'}
+                  </td>
+                </tr>
+              )) : (
+                <tr>
+                  <td colSpan="3">No device statuses available.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="device-selector">
+          <label>
+            Select Device:{" "}
+            <select
+              value={deviceId}
+              onChange={e => setDeviceId(e.target.value)}
+              disabled={devices.length === 0}
+            >
+              {devices.length > 0 ? devices.map(d => (
+                <option key={d} value={d}>{d}</option>
+              )) : (
+                <option value="">No devices available</option>
+              )}
+            </select>
+          </label>
+          {deviceId && (
+            <button onClick={handleDeleteDevice}>
+              🗑 Remove Device
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="metrics-section">
+        <table className="metrics-table">
           <thead>
             <tr>
-              <th>Device ID</th>
-              <th>Last Heartbeat</th>
-              <th>Status</th>
+              <th>Timestamp</th>
+              <th>CPU (%)</th>
+              <th>Memory (%)</th>
+              <th>Disk (%)</th>
+              <th>Bytes Sent/s</th>
+              <th>Bytes Received/s</th>
+              <th>Disk Read/s</th>
+              <th>Disk Write/s</th>
+              <th>Latency (ms)</th>
+              <th>Uptime (s)</th>
             </tr>
           </thead>
           <tbody>
-            {deviceStatuses.length > 0 ? deviceStatuses.map((d, i) => (
-              <tr key={i}>
-                <td>{d.deviceId}</td>
-                <td>{d.lastHeartbeat ? new Date(d.lastHeartbeat).toLocaleString() : "N/A"}</td>
-                <td style={{ color: d.online ? 'green' : 'red' }}>
-                  {d.online ? 'Online' : 'Offline'}
-                </td>
+            {metrics.length > 0 ? metrics.map((m, i) => (
+              <tr key={i} style={{
+                backgroundColor:
+                  (m.cpuUsage > CPU_THRESHOLD || m.memoryUsage > MEMORY_THRESHOLD || m.diskUsage > DISK_THRESHOLD)
+                    ? "#ffe6e6"
+                    : "white"
+              }}>
+                <td>{m.timestamp ? new Date(m.timestamp).toLocaleString() : "N/A"}</td>
+                <td>{m.cpuUsage?.toFixed(1) ?? '—'}</td>
+                <td>{m.memoryUsage?.toFixed(1) ?? '—'}</td>
+                <td>{m.diskUsage?.toFixed(1) ?? '—'}</td>
+                <td>{m.bytesSentPerSec ?? '—'}</td>
+                <td>{m.bytesRecvPerSec ?? '—'}</td>
+                <td>{m.diskReadBytesPerSec ?? '—'}</td>
+                <td>{m.diskWriteBytesPerSec ?? '—'}</td>
+                <td>{m.latencyMs ?? '—'}</td>
+                <td>{m.systemUptimeSeconds?.toFixed(0) ?? '—'}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan="3">No device statuses available.</td>
+                <td colSpan="10">No data available for this device.</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
-
-      {/* Device Selector and Delete Button */}
-      <div style={{ marginTop: '1rem' }}>
-        <label>
-          Select Device:{" "}
-          <select
-            value={deviceId}
-            onChange={e => setDeviceId(e.target.value)}
-            disabled={devices.length === 0}
-          >
-            {devices.length > 0 ? devices.map(d => (
-              <option key={d} value={d}>{d}</option>
-            )) : (
-              <option value="">No devices available</option>
-            )}
-          </select>
-        </label>
-        {deviceId && (
-          <button
-            onClick={handleDeleteDevice}
-            style={{
-              marginLeft: '1rem',
-              color: 'white',
-              backgroundColor: 'red',
-              padding: '0.3rem 0.7rem',
-              borderRadius: '4px',
-              border: 'none'
-            }}
-          >
-            🗑 Remove Device
-          </button>
-        )}
-      </div>
-
-      {/* Metrics Table */}
-      <table className="metrics-table">
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>CPU (%)</th>
-            <th>Memory (%)</th>
-            <th>Disk (%)</th>
-            <th>Bytes Sent/s</th>
-            <th>Bytes Received/s</th>
-            <th>Disk Read/s</th>
-            <th>Disk Write/s</th>
-            <th>Latency (ms)</th>
-            <th>Uptime (s)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {metrics.length > 0 ? metrics.map((m, i) => (
-            <tr key={i} style={{
-              backgroundColor:
-                (m.cpuUsage > CPU_THRESHOLD || m.memoryUsage > MEMORY_THRESHOLD || m.diskUsage > DISK_THRESHOLD)
-                  ? "#ffebeb"
-                  : "white"
-            }}>
-              <td>{m.timestamp ? new Date(m.timestamp).toLocaleString() : "N/A"}</td>
-              <td>{m.cpuUsage?.toFixed(1) ?? '—'}</td>
-              <td>{m.memoryUsage?.toFixed(1) ?? '—'}</td>
-              <td>{m.diskUsage?.toFixed(1) ?? '—'}</td>
-              <td>{m.bytesSentPerSec ?? '—'}</td>
-              <td>{m.bytesRecvPerSec ?? '—'}</td>
-              <td>{m.diskReadBytesPerSec ?? '—'}</td>
-              <td>{m.diskWriteBytesPerSec ?? '—'}</td>
-              <td>{m.latencyMs ?? '—'}</td>
-              <td>{m.systemUptimeSeconds?.toFixed(0) ?? '—'}</td>
-            </tr>
-          )) : (
-            <tr>
-              <td colSpan="11">No data available for this device.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
     </div>
   );
 }
