@@ -10,7 +10,10 @@ target/
 # OS files (optional)
 .DS_Store
 
+#User and Password
+backend/src/main/resources/application.properties
+
 # Environment variables files
 .env
-frontend/.env/local
-frontend/.env/production
+frontend/.env.local
+frontend/.env.production
