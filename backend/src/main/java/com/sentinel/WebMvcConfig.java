@@ -9,17 +9,34 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // CORS configuration for REST API endpoints
+        
+        registry.addMapping("/**")  // <-- important: all paths
+            .allowedOriginPatterns("http://localhost:3000")
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .allowedHeaders("*")
+            .allowCredentials(true);
+        
         registry.addMapping("/api/**")
                 .allowedOriginPatterns("http://localhost:3000", "http://18.219.9.22:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
 
-        // CORS configuration for WebSocket fallback endpoints (SockJS)
         registry.addMapping("/ws/**")
                 .allowedOriginPatterns("http://localhost:3000", "http://18.219.9.22:3000")
                 .allowedMethods("GET", "POST", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+
+        registry.addMapping("/register")
+                .allowedOriginPatterns("http://localhost:3000", "http://18.219.9.22:3000")
+                .allowedMethods("POST", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+
+        registry.addMapping("/login")
+                .allowedOriginPatterns("http://localhost:3000", "http://18.219.9.22:3000")
+                .allowedMethods("POST", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
