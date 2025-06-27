@@ -17,3 +17,7 @@ backend/src/main/resources/application.properties
 .env
 frontend/.env.local
 frontend/.env.production
+
+#logs
+agents/python/sentinel-agent.log
+agents/python/device_data/device_id.json
