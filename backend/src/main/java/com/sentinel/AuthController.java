@@ -1,39 +1,79 @@
 package com.sentinel;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import java.security.Principal;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
+@RequestMapping
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepo;
+    private final AuthenticationManager authManager;
+    private final JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthController(
+        AuthenticationManager authManager,
+        JwtUtil jwtUtil,
+        UserRepository userRepository,
+        PasswordEncoder passwordEncoder
+    ) {
+        this.authManager = authManager;
+        this.jwtUtil = jwtUtil;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
+
+        if (username == null || password == null) {
+            return ResponseEntity.badRequest().body("Username and password must be provided");
+        }
+
+        try {
+            Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(username, password)
+            );
+
+            String token = jwtUtil.generateToken(username);
+            return ResponseEntity.ok(Map.of("token", token));
+
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User request) {
-        if (userRepo.findByUsername(request.getUsername()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+    public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
+
+        if (username == null || password == null) {
+            return ResponseEntity.badRequest().body("Username and password are required.");
         }
 
-        // Hash the password and set role
-        request.setPassword(passwordEncoder.encode(request.getPassword()));
-        request.setRole("ROLE_USER");
-
-        userRepo.save(request);
-        return ResponseEntity.ok("User registered");
-    }
-    @GetMapping("/api/user")
-    public ResponseEntity<String> currentUser(Principal principal) {
-        if (principal != null) {
-            return ResponseEntity.ok(principal.getName());
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
+        if (userRepository.findByUsername(username).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists.");
         }
+
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(passwordEncoder.encode(password));
+        newUser.setRole("ROLE_USER");  // assign a default role
+        userRepository.save(newUser);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
     }
 }

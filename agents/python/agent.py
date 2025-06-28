@@ -9,10 +9,14 @@ import uuid
 
 # ====== CONFIGURATION ======
 SERVER_URL = "http://192.168.12.115:8080/api/metrics"
+LOGIN_URL = "http://192.168.12.115:8080/login"
 DEVICE_ID_FILE = "device_data/device_id.json"
 INTERVAL_SECONDS = 30
 MAX_RETRIES = 3
 BUFFER_FILE = "unsent_metrics.json"
+
+USERNAME = os.getenv("AGENT_USERNAME", "agent")
+PASSWORD = os.getenv("AGENT_PASSWORD", "pass")
 # ============================
 
 # Setup logging
@@ -31,13 +35,12 @@ def get_or_create_device_id():
         except Exception as e:
             logging.warning(f"Could not read device ID file: {e}")
 
-    # Generate new device ID
     hostname = socket.gethostname()
     mac = uuid.getnode()
     device_id = f"{hostname}-{mac}"
 
     try:
-        os.makedirs(os.path.dirname(DEVICE_ID_FILE), exist_ok=True)  # <-- Ensure directory exists
+        os.makedirs(os.path.dirname(DEVICE_ID_FILE), exist_ok=True)
         with open(DEVICE_ID_FILE, 'w') as f:
             json.dump({'device_id': device_id}, f)
         logging.info(f"Generated new device ID: {device_id}")
@@ -88,19 +91,41 @@ def collect_metrics():
         "latencyMs": get_latency()
     }
 
-def send_metrics(metrics):
+def get_jwt_token():
+    try:
+        resp = requests.post(LOGIN_URL, json={"username": USERNAME, "password": PASSWORD}, timeout=5)
+        resp.raise_for_status()
+        token = resp.json().get("token")
+        if token:
+            logging.info("Obtained JWT token from login.")
+            return token
+        else:
+            logging.error("Login response missing token.")
+            return None
+    except Exception as e:
+        logging.error(f"Login failed: {e}")
+        return None
+
+def send_metrics(metrics, token):
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            response = requests.post(SERVER_URL, json=metrics, timeout=5)
+            response = requests.post(SERVER_URL, json=metrics, headers=headers, timeout=5)
             if response.status_code in [200, 201]:
                 logging.info(f"Metrics sent: {metrics}")
-                return True
+                return True, None
+            elif response.status_code == 401:
+                logging.warning("Unauthorized (401) received - token may be invalid or expired.")
+                return False, 401
             else:
                 logging.warning(f"Unexpected status code {response.status_code}")
         except Exception as e:
             logging.error(f"Send attempt {attempt} failed: {e}")
             time.sleep(2 * attempt)
-    return False
+    return False, None
 
 def save_to_buffer(metrics):
     buffer = []
@@ -116,9 +141,9 @@ def save_to_buffer(metrics):
         json.dump(buffer, f)
     logging.info("Saved metrics to buffer.")
 
-def flush_buffer():
+def flush_buffer(token):
     if not os.path.exists(BUFFER_FILE):
-        return
+        return True
 
     try:
         with open(BUFFER_FILE, "r") as f:
@@ -126,31 +151,62 @@ def flush_buffer():
     except json.JSONDecodeError:
         logging.error("Buffer file corrupted, deleting.")
         os.remove(BUFFER_FILE)
-        return
+        return True
 
     if not buffer:
-        return
+        return True
 
     failed_metrics = []
     for metric in buffer:
-        if not send_metrics(metric):
+        success, status = send_metrics(metric, token)
+        if not success:
             failed_metrics.append(metric)
+            if status == 401:
+                # Unauthorized, stop flushing to trigger login refresh
+                logging.warning("401 during buffer flush, will refresh token.")
+                break
 
     if failed_metrics:
         with open(BUFFER_FILE, "w") as f:
             json.dump(failed_metrics, f)
         logging.info(f"{len(failed_metrics)} buffered metrics retained.")
+        return False
     else:
         os.remove(BUFFER_FILE)
         logging.info("Buffer flushed successfully.")
+        return True
 
 def run():
     logging.info("Sentinel Agent Started.")
+    token = get_jwt_token()
+    if not token:
+        logging.error("Could not authenticate on startup. Exiting.")
+        return
+
     while True:
-        flush_buffer()
+        flushed = flush_buffer(token)
+        if not flushed:
+            # Token likely expired, try to get a new one
+            logging.info("Refreshing JWT token...")
+            token = get_jwt_token()
+            if not token:
+                logging.error("Token refresh failed, will retry later.")
+                time.sleep(INTERVAL_SECONDS)
+                continue  # skip sending metrics this round
+
         metrics = collect_metrics()
-        if not send_metrics(metrics):
-            save_to_buffer(metrics)
+        success, status = send_metrics(metrics, token)
+        if not success:
+            if status == 401:
+                logging.info("Unauthorized sending metrics, refreshing token...")
+                token = get_jwt_token()
+                if token:
+                    success, _ = send_metrics(metrics, token)
+                if not success:
+                    save_to_buffer(metrics)
+            else:
+                save_to_buffer(metrics)
+
         time.sleep(INTERVAL_SECONDS)
 
 if __name__ == "__main__":

@@ -3,20 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import App from './App';
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
 
 function AppRouter() {
-  const [isAuth, setIsAuth] = useState(null); // null = loading, false = not logged in
+  const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/user`, { withCredentials: true })
-      .then(() => setIsAuth(true))
-      .catch(() => setIsAuth(false));
+    const token = localStorage.getItem('token');
+    setIsAuth(!!token);
   }, []);
 
   if (isAuth === null) return <div>Loading...</div>;
@@ -24,11 +17,23 @@ function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
+        <Route
+          path="/"
+          element={
+            isAuth ? <Navigate to="/app" replace /> : <Navigate to="/login" replace />
+          }
+        />
+        <Route
+          path="/login"
+          element={isAuth ? <Navigate to="/app" replace /> : <LoginForm setIsAuth={setIsAuth} />}
+        />
+        <Route
+          path="/register"
+          element={isAuth ? <Navigate to="/app" replace /> : <RegisterForm />}
+        />
         <Route
           path="/app"
-          element={isAuth ? <App /> : <Navigate to="/" replace />}
+          element={isAuth ? <App /> : <Navigate to="/login" replace />}
         />
       </Routes>
     </Router>

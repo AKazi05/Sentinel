@@ -19,10 +19,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepo.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        // Return Spring Security User object
+        String role = user.getRole();
+
+        // If role is null or empty, assign default role "USER"
+        if (role == null || role.trim().isEmpty()) {
+            role = "USER";
+        } else {
+            // Remove "ROLE_" prefix if present
+            role = role.replace("ROLE_", "");
+        }
+
+        // Return Spring Security User object with role(s)
         return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
                 .password(user.getPassword()) // hashed password stored in DB
-                .roles(user.getRole().replace("ROLE_", "")) // role without "ROLE_" prefix
+                .roles(role)
                 .build();
     }
 }

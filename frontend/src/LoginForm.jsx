@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from './api';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
-
-function LoginForm() {
+function LoginForm({ setIsAuth }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -12,17 +10,14 @@ function LoginForm() {
   const login = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `${BACKEND_URL}/login`,
-        new URLSearchParams({ username, password }),
-        {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          withCredentials: true,
-        }
-      );
+      const response = await api.post('/login', { username, password });
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+
+      setIsAuth(true); // <-- Update auth state here to trigger redirect in AppRouter
       navigate('/app');
     } catch (err) {
-      alert('Login failed, please check credentials.');
+      alert('Login failed: ' + (err.response?.data || err.message));
     }
   };
 
@@ -47,13 +42,7 @@ function LoginForm() {
           style={styles.input}
         />
         <button type="submit" style={styles.buttonPrimary}>Login</button>
-        <button
-          type="button"
-          onClick={() => navigate('/register')}
-          style={styles.buttonSecondary}
-        >
-          Register
-        </button>
+        <button type="button" onClick={() => navigate('/register')} style={styles.buttonSecondary}>Register</button>
       </form>
     </div>
   );

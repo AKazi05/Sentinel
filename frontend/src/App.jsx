@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import api from './api';  // Use your custom axios instance with token interceptor
 import './App.css';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = BACKEND_URL;
 
 function App() {
   const [devices, setDevices] = useState([]);
@@ -20,9 +15,16 @@ function App() {
   const MEMORY_THRESHOLD = 90;
   const DISK_THRESHOLD = 90;
 
+  // --- Logout handler ---
+  const handleLogout = () => {
+    localStorage.removeItem('token');  // Remove JWT token
+    // If you have user state, reset it here, e.g. setUser(null);
+    window.location.href = '/login';   // Redirect to login page
+  };
+
   useEffect(() => {
     const fetchStatuses = () => {
-      axios.get('/api/metrics/status', { withCredentials: true })
+      api.get('/api/metrics/status')
         .then(res => {
           const statuses = Array.isArray(res.data) ? res.data : [];
           setDeviceStatuses(statuses);
@@ -52,7 +54,7 @@ function App() {
       return;
     }
 
-    axios.get(`/api/metrics/${deviceId}`, { withCredentials: true })
+    api.get(`/api/metrics/${deviceId}`)
       .then(res => {
         const metricsArray = Array.isArray(res.data.content) ? res.data.content : [];
         setMetrics(metricsArray);
@@ -65,7 +67,7 @@ function App() {
   useEffect(() => {
     if (!deviceId) return;
 
-    const socket = new SockJS(`${BACKEND_URL}/ws`);
+    const socket = new SockJS(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080'}/ws`);
     const client = new Client({
       webSocketFactory: () => socket,
       debug: str => console.log(str),
@@ -104,7 +106,7 @@ function App() {
     if (!window.confirm(`Are you sure you want to delete "${deviceId}"?`)) return;
 
     try {
-      await axios.delete(`/api/devices/${deviceId}`, { withCredentials: true });
+      await api.delete(`/api/devices/${deviceId}`);
       alert(`Device "${deviceId}" deleted`);
       setDevices(prev => {
         const updated = prev.filter(d => d !== deviceId);
@@ -120,7 +122,12 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="main-title">Sentinel Monitoring Dashboard</h1>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 className="main-title">Sentinel Monitoring Dashboard</h1>
+        <button onClick={handleLogout} style={{ padding: '6px 12px', cursor: 'pointer' }}>
+          Logout
+        </button>
+      </header>
 
       <div className="alerts-section">
         <h2>Alerts</h2>
