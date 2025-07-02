@@ -8,26 +8,25 @@ import os
 import uuid
 
 # ====== CONFIGURATION ======
-SERVER_URL = "http://192.168.12.115:8080/api/metrics"
+SERVER_URL = "http://192.168.12.115:8080/api/metrics/batch"
 LOGIN_URL = "http://192.168.12.115:8080/login"
-DEVICE_ID_FILE = "device_data/device_id.json"
-INTERVAL_SECONDS = 30
+DEVICE_ID_FILE = "agents/python/device_data/device_id.json"
+INTERVAL_SECONDS = 3
 MAX_RETRIES = 3
 BUFFER_FILE = "unsent_metrics.json"
+BATCH_SIZE = 5
 
 USERNAME = os.getenv("AGENT_USERNAME", "agent")
 PASSWORD = os.getenv("AGENT_PASSWORD", "pass")
 # ============================
 
-# Setup logging
 logging.basicConfig(
-    filename="sentinel-agent.log",
+    filename="agents/python/sentinel-agent.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
 def get_or_create_device_id():
-    """Load or generate a persistent device ID."""
     if os.path.exists(DEVICE_ID_FILE):
         try:
             with open(DEVICE_ID_FILE, 'r') as f:
@@ -106,19 +105,18 @@ def get_jwt_token():
         logging.error(f"Login failed: {e}")
         return None
 
-def send_metrics(metrics, token):
+def send_metrics_batch(metrics_batch, token):
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            response = requests.post(SERVER_URL, json=metrics, headers=headers, timeout=5)
+            response = requests.post(SERVER_URL, json=metrics_batch, headers=headers, timeout=5)
             if response.status_code in [200, 201]:
-                logging.info(f"Metrics sent: {metrics}")
+                logging.info(f"Batch sent successfully with {len(metrics_batch)} metrics.")
                 return True, None
             elif response.status_code == 401:
-                logging.warning("Unauthorized (401) received - token may be invalid or expired.")
                 return False, 401
             else:
                 logging.warning(f"Unexpected status code {response.status_code}")
@@ -158,11 +156,10 @@ def flush_buffer(token):
 
     failed_metrics = []
     for metric in buffer:
-        success, status = send_metrics(metric, token)
+        success, status = send_metrics_batch([metric], token)
         if not success:
             failed_metrics.append(metric)
             if status == 401:
-                # Unauthorized, stop flushing to trigger login refresh
                 logging.warning("401 during buffer flush, will refresh token.")
                 break
 
@@ -183,29 +180,30 @@ def run():
         logging.error("Could not authenticate on startup. Exiting.")
         return
 
+    metric_batch = []
+
     while True:
         flushed = flush_buffer(token)
         if not flushed:
-            # Token likely expired, try to get a new one
-            logging.info("Refreshing JWT token...")
             token = get_jwt_token()
             if not token:
-                logging.error("Token refresh failed, will retry later.")
                 time.sleep(INTERVAL_SECONDS)
-                continue  # skip sending metrics this round
+                continue
 
-        metrics = collect_metrics()
-        success, status = send_metrics(metrics, token)
-        if not success:
-            if status == 401:
-                logging.info("Unauthorized sending metrics, refreshing token...")
-                token = get_jwt_token()
-                if token:
-                    success, _ = send_metrics(metrics, token)
+        metric = collect_metrics()
+        metric_batch.append(metric)
+
+        if len(metric_batch) >= BATCH_SIZE:
+            success, status = send_metrics_batch(metric_batch, token)
+            if not success:
+                if status == 401:
+                    token = get_jwt_token()
+                    if token:
+                        success, _ = send_metrics_batch(metric_batch, token)
                 if not success:
-                    save_to_buffer(metrics)
-            else:
-                save_to_buffer(metrics)
+                    for m in metric_batch:
+                        save_to_buffer(m)
+            metric_batch.clear()
 
         time.sleep(INTERVAL_SECONDS)
 

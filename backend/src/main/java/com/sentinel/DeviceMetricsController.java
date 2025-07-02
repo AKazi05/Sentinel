@@ -33,6 +33,22 @@ public class DeviceMetricsController {
         return saved;
     }
 
+    @PostMapping("/metrics/batch")
+    public ResponseEntity<List<DeviceMetrics>> submitBatchMetrics(@RequestBody List<DeviceMetrics> metricsList) {
+        for (DeviceMetrics metrics : metricsList) {
+            metrics.setTimestamp(LocalDateTime.now());
+        }
+
+        List<DeviceMetrics> savedMetrics = repo.saveAll(metricsList);
+
+        // Optionally push the most recent metric for each device to WebSocket
+        for (DeviceMetrics metrics : savedMetrics) {
+            messagingTemplate.convertAndSend("/topic/metrics/" + metrics.getDeviceId(), metrics);
+        }
+
+        return ResponseEntity.ok(savedMetrics);
+    }
+
     @GetMapping("/metrics/{deviceId}")
     public Page<DeviceMetrics> getMetrics(
             @PathVariable String deviceId,
@@ -88,10 +104,9 @@ public class DeviceMetricsController {
         return latestMetrics;
     }
 
-@DeleteMapping("/devices/{deviceId}")
-public ResponseEntity<Void> deleteDevice(@PathVariable String deviceId) {
-    repo.deleteByDeviceId(deviceId);
-    return ResponseEntity.noContent().build();
-}
-
+    @DeleteMapping("/devices/{deviceId}")
+    public ResponseEntity<Void> deleteDevice(@PathVariable String deviceId) {
+        repo.deleteByDeviceId(deviceId);
+        return ResponseEntity.noContent().build();
+    }
 }

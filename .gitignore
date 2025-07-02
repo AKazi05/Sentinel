@@ -18,6 +18,9 @@ backend/src/main/resources/application.properties
 frontend/.env.local
 frontend/.env.production
 
+#Device id
+agents/python/device_data/device_id.json
+
 #Virtual Environment
 venv/
 
