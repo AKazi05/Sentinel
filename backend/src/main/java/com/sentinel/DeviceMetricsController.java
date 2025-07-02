@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 @RestController
 @RequestMapping("/api")
@@ -17,36 +18,33 @@ public class DeviceMetricsController {
 
     private final DeviceMetricsRepository repo;
     private final SimpMessagingTemplate messagingTemplate;
+    private final BlockingQueue<DeviceMetrics> metricsQueue;
 
-    public DeviceMetricsController(DeviceMetricsRepository repo, SimpMessagingTemplate messagingTemplate) {
+    public DeviceMetricsController(DeviceMetricsRepository repo,
+                                   SimpMessagingTemplate messagingTemplate,
+                                   BlockingQueue<DeviceMetrics> metricsQueue) {
         this.repo = repo;
         this.messagingTemplate = messagingTemplate;
+        this.metricsQueue = metricsQueue;
     }
 
     @PostMapping("/metrics")
-    public DeviceMetrics submitMetrics(@RequestBody DeviceMetrics metrics) {
-        System.out.println("✅ Received metrics from: " + metrics.getDeviceId());
+    public ResponseEntity<String> submitMetrics(@RequestBody DeviceMetrics metrics) {
         metrics.setTimestamp(LocalDateTime.now());
-        DeviceMetrics saved = repo.save(metrics);
+        metricsQueue.offer(metrics); // enqueue instead of saving immediately
 
-        messagingTemplate.convertAndSend("/topic/metrics/" + saved.getDeviceId(), saved);
-        return saved;
+        messagingTemplate.convertAndSend("/topic/metrics/" + metrics.getDeviceId(), metrics);
+        return ResponseEntity.ok("Metric accepted");
     }
-
+    
     @PostMapping("/metrics/batch")
-    public ResponseEntity<List<DeviceMetrics>> submitBatchMetrics(@RequestBody List<DeviceMetrics> metricsList) {
+    public ResponseEntity<String> submitMetricsBatch(@RequestBody List<DeviceMetrics> metricsList) {
         for (DeviceMetrics metrics : metricsList) {
             metrics.setTimestamp(LocalDateTime.now());
-        }
-
-        List<DeviceMetrics> savedMetrics = repo.saveAll(metricsList);
-
-        // Optionally push the most recent metric for each device to WebSocket
-        for (DeviceMetrics metrics : savedMetrics) {
+            metricsQueue.offer(metrics);
             messagingTemplate.convertAndSend("/topic/metrics/" + metrics.getDeviceId(), metrics);
         }
-
-        return ResponseEntity.ok(savedMetrics);
+        return ResponseEntity.ok("Batch accepted");
     }
 
     @GetMapping("/metrics/{deviceId}")

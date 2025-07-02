@@ -99,6 +99,8 @@
     <artifactId>spring-boot-starter-security</artifactId>
   </dependency>
 
+
+
   <!-- JWT Security -->
 
 <dependency>
@@ -117,6 +119,14 @@
   <artifactId>jjwt-jackson</artifactId>
   <version>0.11.5</version>
   <scope>runtime</scope>
+</dependency>
+
+  <!-- Jakarta -->
+
+<dependency>
+    <groupId>jakarta.annotation</groupId>
+    <artifactId>jakarta.annotation-api</artifactId>
+    <version>2.1.0</version>
 </dependency>
 
 </dependencies>
